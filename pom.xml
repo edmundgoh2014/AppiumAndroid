@@ -13,7 +13,7 @@
         <maven.compiler.target>22</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <junit.version>5.10.2</junit.version>
-        <appium-client.version>9.2.0</appium-client.version>
+        <appium-client.version>9.2.2</appium-client.version>
     </properties>
     <dependencies>
         <!-- https://mvnrepository.com/artifact/io.appium/java-client -->
@@ -31,12 +31,7 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-api</artifactId>
-            <version>4.18.1</version>
-            <scope>test</scope>
-        </dependency>
+
 
     </dependencies>
 
