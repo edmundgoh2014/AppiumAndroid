@@ -5,6 +5,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import config.testConfig;
+
 public class testBase extends appiumDriver {
     public static final By burgerMenu = AppiumBy.accessibilityId("open menu");
     public static final By loginMenu = AppiumBy.accessibilityId("menu item log in");
@@ -14,12 +16,18 @@ public class testBase extends appiumDriver {
     public static final By logoutMenu = AppiumBy.accessibilityId("menu item log out");
     public static final By logoutButton = AppiumBy.xpath("//android.widget.Button[@resource-id=\"android:id/button1\"]");
     
+    
     public void login(String username, String password){
         driver.findElement(testBase.burgerMenu).click();
         driver.findElement(testBase.loginMenu).click();
         driver.findElement(testBase.usernameInput).sendKeys(username);
         driver.findElement(testBase.passwordInput).sendKeys(password);
         driver.findElement(testBase.loginButton).click();
+    }
+
+    // Overloaded method with no parameters, providing default values for both username and password
+    public void login() {
+        login(testConfig.username, testConfig.password);
     }
 
     public void logout(){

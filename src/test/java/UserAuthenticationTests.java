@@ -12,11 +12,9 @@ public class UserAuthenticationTests extends testBase {
 
     @Test
     void loginWithCorrectUser() {
-        final String userName = "bob@example.com";
-        final String password = "10203040";
         String homePageTitleText = "Products";
 
-        login(userName, password);
+        login();
         WebElement homePageTitle = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//android.widget.TextView[@text=\"Products\"]")));
         assertEquals(homePageTitleText, homePageTitle.getText());
         logout();
@@ -24,8 +22,8 @@ public class UserAuthenticationTests extends testBase {
 
     @Test
     void loginWithLockedOutUser() {
-        final String userName = "alice@example.com";
-        final String password = "10203040";
+        String userName = "alice@example.com";
+        String password = "10203040";
         String userLockedOutPopUpText = "Sorry, this user has been locked out.";
 
         login(userName, password);
@@ -35,8 +33,8 @@ public class UserAuthenticationTests extends testBase {
 
     @Test
     void loginWithNonExistingUser() {
-        final String userName = "unknown@example.com";
-        final String password = "10203040";
+        String userName = "unknown@example.com";
+        String password = "unknown";
         String noSuchUserPopUpText = "Provided credentials do not match any user in this service.";
 
         login(userName, password);
@@ -46,12 +44,10 @@ public class UserAuthenticationTests extends testBase {
 
     @Test
     void loginWithExistingUserButWrongPassword() {
-        testConfig.explicitWaitTime = 5;
-        final String userName = "bob@example.com";
-        final String password = "wrong";
-        final String wrongCredentialsPopUpText = "Provided credentials do not match any user in this service.";
+        String password = "wrong";
+        String wrongCredentialsPopUpText = "Provided credentials do not match any user in this service.";
 
-        login(userName, password);
+        login(testConfig.username, password);
         WebElement wrongCredentialsPopUp = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//android.widget.TextView[@text=\"" + wrongCredentialsPopUpText + "\"]")));
         assertEquals(wrongCredentialsPopUpText, wrongCredentialsPopUp.getText());
     }

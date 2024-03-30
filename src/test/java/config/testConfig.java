@@ -9,6 +9,8 @@ public class testConfig {
     public static final String deviceName = "testAndroid";
     public static final String driverHost = "http://localhost:4723";
     public static int explicitWaitTime = 3;
+    public static final String username = "bob@example.com";
+    public static final String password = "10203040";
 
     static {
         try {
