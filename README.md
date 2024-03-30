@@ -18,7 +18,7 @@ Before running the tests, ensure you have the following software installed:
 
 1. Clone this repository to your local machine.
 2. Install the necessary dependencies using Maven.
-3. Connect a real Android device or start an Android emulator.
+3. Connect a real Android device or start an Android emulator. (Note: ensure that your deviceName & driverHost in testConfig.java values are the same as you configured for your Appium.)
 4. Install the apk file from "src/test/resources/Android-MyDemoAppRN.1.3.0.build-244.apk" onto your device.
 5. Run the tests using whichever IDE of your choice. 
 (Note: if you're using a real Android device, you will need to modify my code slightly as I'm testing this on an Android emulator.)
