@@ -4,9 +4,6 @@ import io.appium.java_client.AppiumBy;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
 
 public class testBase extends appiumDriver {
     public static final By burgerMenu = AppiumBy.accessibilityId("open menu");
@@ -16,7 +13,7 @@ public class testBase extends appiumDriver {
     public static final By loginButton = AppiumBy.accessibilityId("Login button");
     public static final By logoutMenu = AppiumBy.accessibilityId("menu item log out");
     public static final By logoutButton = AppiumBy.xpath("//android.widget.Button[@resource-id=\"android:id/button1\"]");
-
+    
     public void login(String username, String password){
         driver.findElement(testBase.burgerMenu).click();
         driver.findElement(testBase.loginMenu).click();

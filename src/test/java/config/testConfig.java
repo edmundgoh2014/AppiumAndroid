@@ -8,6 +8,7 @@ public class testConfig {
     public static final String APK;
     public static final String deviceName = "testAndroid";
     public static final String driverHost = "http://localhost:4723";
+    public static int explicitWaitTime = 3;
 
     static {
         try {

@@ -20,12 +20,14 @@ public class appiumDriver extends appiumServer {
     @SuppressWarnings("deprecation")
     @BeforeEach
     public void startDriver() throws MalformedURLException {
+        testConfig.explicitWaitTime = 3;
+
         options = new UiAutomator2Options()
                 .setDeviceName(testConfig.deviceName)
                 .setApp(testConfig.APK);
         driver = new AndroidDriver(new URL(testConfig.driverHost), options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(testConfig.explicitWaitTime));
         System.out.println("BeforeEach");
     }
 

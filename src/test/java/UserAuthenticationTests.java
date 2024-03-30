@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import config.testConfig;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class UserAuthenticationTests extends testBase {
@@ -44,6 +46,7 @@ public class UserAuthenticationTests extends testBase {
 
     @Test
     void loginWithExistingUserButWrongPassword() {
+        testConfig.explicitWaitTime = 5;
         final String userName = "bob@example.com";
         final String password = "wrong";
         final String wrongCredentialsPopUpText = "Provided credentials do not match any user in this service.";
