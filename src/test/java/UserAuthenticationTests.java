@@ -29,7 +29,6 @@ public class UserAuthenticationTests extends testBase {
         login(userName, password);
         WebElement userLockedOutPopUp = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//android.widget.TextView[@text=\"" + userLockedOutPopUpText + "\"]")));
         assertEquals(userLockedOutPopUpText, userLockedOutPopUp.getText());
-        logout();
     }
 
     @Test
@@ -41,7 +40,6 @@ public class UserAuthenticationTests extends testBase {
         login(userName, password);
         WebElement noSuchUserPopUp = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//android.widget.TextView[@text=\"" + noSuchUserPopUpText + "\"]")));
         assertEquals(noSuchUserPopUpText, noSuchUserPopUp.getText());
-        logout();
     }
 
     @Test
@@ -53,6 +51,5 @@ public class UserAuthenticationTests extends testBase {
         login(userName, password);
         WebElement wrongCredentialsPopUp = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//android.widget.TextView[@text=\"" + wrongCredentialsPopUpText + "\"]")));
         assertEquals(wrongCredentialsPopUpText, wrongCredentialsPopUp.getText());
-        logout();
     }
 }
