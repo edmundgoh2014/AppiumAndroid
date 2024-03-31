@@ -1,5 +1,6 @@
 import io.appium.java_client.AppiumBy;
-import lib.appiumDriver;
+import lib.testBase;
+
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -8,39 +9,39 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 
-public class cartTests extends appiumDriver {
-    public static final By itemHeader = AppiumBy.accessibilityId("container header");
-    public static final String circleColour = "red circle";
-    public static final By itemPrice = AppiumBy.accessibilityId("product price");
-    public static final By colourButton = AppiumBy.xpath("//android.view.ViewGroup[@content-desc=\""+circleColour+"\"]/android.view.ViewGroup");
-    public static final By zeroItemCounter = AppiumBy.xpath("//android.widget.TextView[@text=\"0\"]");
-    public static final By minusItemCounter = AppiumBy.accessibilityId("counter minus button");
-    public static final By plusItemCounter = AppiumBy.accessibilityId("counter plus button");
-    public static final By addToCartButton = AppiumBy.accessibilityId("Add To Cart button");
+public class cartTests extends testBase {
+    public static final By actualTotalNoOfItem = AppiumBy.accessibilityId("total number");
+    public static final By actualTotalPrice = AppiumBy.accessibilityId("total price");
     public static final By cartBadgeButton = AppiumBy.accessibilityId("cart badge");
+    public static final String expectedProductPrice = "$29.99";
+    public static final String itemName = "Sauce Labs Backpack";
 
     @Test
     void add1ItemToCart() {
-        String backpackPrice = "$29.99";
-        String itemName = "Sauce Labs Backpack";
+        int quantity = 1;
 
-        driver.findElement(By.xpath("//android.widget.TextView[@content-desc=\"store item text\" and @text=\""+itemName+"\"]")).click();
-        assertEquals(backpackPrice, driver.findElement(itemPrice).getText());
-        driver.findElement(addToCartButton).click();
+        CartItemInfo cartItemInfo = addItemToCart(itemName, quantity);
+        String actualProductPrice = cartItemInfo.getActualProductPrice();
+        String actualQuantity = cartItemInfo.getActualQuantity();
+
+        assertEquals(expectedProductPrice, actualProductPrice);
+        assertEquals(Integer.toString(quantity), actualQuantity);
         driver.findElement(cartBadgeButton).click();
         assertEquals(itemName, driver.findElement(By.xpath("//android.widget.TextView[@content-desc=\"product label\" and @text=\"" + itemName + "\"]")).getText());
+        assertEquals(expectedProductPrice, driver.findElement(actualTotalPrice).getText());
+        assertEquals(quantity + " item", driver.findElement(actualTotalNoOfItem).getText());
     }
 
     @Test
     void add0ItemToCart() {
-        String backpackPrice = "$29.99";
-        String counter = "0";
-        String itemName = "Sauce Labs Backpack";
+        int quantity = 0;
 
-        driver.findElement(By.xpath("//android.widget.TextView[@content-desc=\"store item text\" and @text=\""+itemName+"\"]")).click();
-        assertEquals(backpackPrice, driver.findElement(itemPrice).getText());
-        driver.findElement(minusItemCounter).click();
-        assertEquals(counter, driver.findElement(zeroItemCounter).getText());
+        CartItemInfo cartItemInfo = addItemToCart(itemName, quantity);
+        String actualProductPrice = cartItemInfo.getActualProductPrice();
+        String actualQuantity = cartItemInfo.getActualQuantity();
+
+        assertEquals(expectedProductPrice, actualProductPrice);
+        assertEquals(Integer.toString(quantity), actualQuantity);
         assertFalse(driver.findElement(addToCartButton).isEnabled());
         driver.findElement(cartBadgeButton).click();
         List<WebElement> itemInCart = driver.findElements(By.xpath("//android.widget.TextView[@content-desc=\"product label\" and @text=\"" + itemName + "\"]"));
